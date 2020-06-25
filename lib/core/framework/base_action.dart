@@ -1,4 +1,5 @@
 import 'package:aset_ku/core/framework/base_view.dart';
+import 'package:aset_ku/core/framework/material_service.dart';
 import 'package:aset_ku/core/framework/navigation_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,17 @@ abstract class BaseAction<
     A extends BaseAction<V, A, S>,
     S extends Equatable> extends FutureViewModel<S> {
   S state;
+  MaterialService _materialService;
 
   NavigatorFactory navigator = () => GetIt.I.get<NavigationService>();
+  MaterialService material() {
+    if (_materialService == null) {
+      throw UnimplementedError(
+        'please attach key to your screen scaffold get it from `action.getScaffoldKey()`',
+      );
+    }
+    return _materialService;
+  }
 
   // load directly state data or load it from data source
   Future<S> initState();
@@ -28,6 +38,13 @@ abstract class BaseAction<
   void render() {
     if (state != null) notifyListeners();
   }
+
+  GlobalKey<ScaffoldState> getScaffoldKey() {
+    _materialService = MaterialService();
+    return _materialService.scaffoldKey;
+  }
+
+  Future<bool> onWillPop() async => true;
 
   @override
   Future<S> futureToRun() async {

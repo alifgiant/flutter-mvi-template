@@ -15,9 +15,12 @@ abstract class BaseView<
 
   @override
   Widget builder(BuildContext context, A action, Widget child) {
-    return action.isBusy
-        ? loadingViewBuilder(context)
-        : render(context, action, action.state, child);
+    return WillPopScope(
+      child: action.isBusy
+          ? loadingViewBuilder(context)
+          : render(context, action, action.state, child),
+      onWillPop: () => action.onWillPop(),
+    );
   }
 
   A initAction();
