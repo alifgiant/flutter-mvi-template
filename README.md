@@ -135,7 +135,7 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
 
 3. If the screen has a static child, that doesnt need to be rebuild pass it on `staticChildBuilder`.
 
-4. `action.reloadScreen()` will retrigger `initState` future and rest isBusy flag.
+4. `action.reloadScreen()` will retrigger `initState` future and restet isBusy flag.
 
 ## How to run
 
