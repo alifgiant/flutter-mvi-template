@@ -2,14 +2,12 @@ import 'package:aset_ku/core/framework/navigation_service.dart';
 import 'package:aset_ku/core/framework/service_locator.dart';
 import 'package:aset_ku/core/resources/app_color.dart';
 import 'package:aset_ku/core/resources/app_text_style.dart';
-import 'package:aset_ku/core/utils/money_utils.dart' as MoneyUtils;
 import 'package:aset_ku/feature/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:statusbar/statusbar.dart';
 
 void main() {
-  MoneyUtils.registerMoneyType();
   GetIt.instance.setupLocator();
 
   runApp(MyApp());

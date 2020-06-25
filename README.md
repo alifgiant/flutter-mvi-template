@@ -127,9 +127,11 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
 }
 ```
 
-2. Every screen is a loadable ready screen. As you can see on above `action` example, initState is a `future` function. So in the meantime the screen will load view from `loadingViewBuilder`. You can load a spinner or shimmer on it.
+2. Every screen is a loadable ready screen. As you can see on above `action` example, initState is a `future` function which you can use to retrive data from a source. So, in the meantime the screen will load view from `loadingViewBuilder`. You can load a spinner or shimmer on it.
 
 3. If the screen has a static child, that doesnt need to be rebuild pass it on `staticChildBuilder`.
+
+4. `action.reloadScreen()` will retrigger `initState` future and rest isBusy flag.
 
 ## How to run
 
