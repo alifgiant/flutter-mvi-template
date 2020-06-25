@@ -1,2 +1,3 @@
-# AsetKu
-Indonesia people focuses assets tracker
+# Template for MVI pattern in Flutter
+
+This template written on top Stacked library.
