@@ -1,0 +1,61 @@
+PODS:
+  - Flutter (1.0.0)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - path_provider (0.0.1):
+    - Flutter
+  - path_provider_linux (0.0.1):
+    - Flutter
+  - path_provider_macos (0.0.1):
+    - Flutter
+  - speech_to_text (0.0.1):
+    - Flutter
+  - sqflite (0.0.1):
+    - Flutter
+    - FMDB (~> 2.7.2)
+  - statusbar (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - path_provider_linux (from `.symlinks/plugins/path_provider_linux/ios`)
+  - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
+  - speech_to_text (from `.symlinks/plugins/speech_to_text/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - statusbar (from `.symlinks/plugins/statusbar/ios`)
+
+SPEC REPOS:
+  trunk:
+    - FMDB
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  path_provider_linux:
+    :path: ".symlinks/plugins/path_provider_linux/ios"
+  path_provider_macos:
+    :path: ".symlinks/plugins/path_provider_macos/ios"
+  speech_to_text:
+    :path: ".symlinks/plugins/speech_to_text/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
+  statusbar:
+    :path: ".symlinks/plugins/statusbar/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  path_provider_linux: 4d630dc393e1f20364f3e3b4a2ff41d9674a84e4
+  path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
+  speech_to_text: 41b068d5f61fe3abe7e2bb0296250cf996e45417
+  sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
+  statusbar: 7d4f3b27d5e9317b17bc48cbf6046f892bf9ebeb
+
+PODFILE CHECKSUM: f45d293502bdcca725aca7bc62af43ad173e1292
+
+COCOAPODS: 1.9.1
