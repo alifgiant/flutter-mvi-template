@@ -168,10 +168,10 @@ $ flutter run --web-port 3600
 - Material Icon is disabled by default, because prefer to use custom icon.
 
 ## Unfinished template
-- Internationalization template
-- Image sourcing template
-- Usecase - Repository pattern
-
+- [ ] Internationalization template
+- [ ] Image sourcing template
+- [ ] Usecase - Repository pattern
+- [ ] Unit test example
 
 ## Library usage
 
