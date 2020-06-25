@@ -31,7 +31,7 @@ class HomeAction extends BaseAction<HomeScreen, HomeAction, HomeState> {
 
 class HomeScreen extends BaseView<HomeScreen, HomeAction, HomeState> {
   @override
-  HomeAction viewModelBuilder(BuildContext context) => HomeAction();
+  HomeAction initAction() => HomeAction();
 
   @override
   Widget staticChildBuilder(BuildContext context) {

@@ -19,4 +19,9 @@ abstract class BaseView<
         ? loadingViewBuilder(context)
         : render(context, action, action.state, child);
   }
+
+  A initAction();
+
+  @override
+  A viewModelBuilder(BuildContext context) => initAction();
 }

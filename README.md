@@ -4,9 +4,9 @@ This template written on top [Stacked](https://pub.dev/packages/stacked) library
 
 ## Why this template
 
-Standard pattern for flutter let you code everything in the widget. This approach is easy to learn, but the more you learn you will notice "Separation of Concern (S.o.C)" is not the top priority of standard pattern. There are lot popular pattern in community such as BLoC, MVP, MVVM and MVI. Personally i think MVI is the better way, so i wrote this template.
+Standard pattern for flutter let you code everything in the widget. This approach is easy to learn, but the more you learn you will notice "Separation of Concern (S.o.C)" is not the top priority of the standard pattern. There are a lot of popular pattern in community such as `BLoC`, `MVP`, `MVVM` and `MVI`. Personally i think MVI is the better way, so i wrote this template.
 
-In this template `setState(){...}` is replaced to `render()` and only available on `Action class`. So, just like before, every state change is triggering whole widget re-build, but it can only be accessed from action. The view can't trigger self re-build because it doesn't have state.
+In this template `setState((){...})` is replaced to `render()` and only available on `Action class`. So, just like before, every state change is triggering whole widget re-build, but it can only be accessed from action. The view can't trigger self re-build because it doesn't have state.
 
 Also, action doesn't have access to context, so if it need to do an action which need a `context` it will be injected by a service locator (`get_it` library).
 
@@ -88,16 +88,10 @@ class HomeAction extends BaseAction<HomeScreen, HomeAction, HomeState> {
 
 class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
   @override
-  HomeAction viewModelBuilder(BuildContext context) => HomeAction();
+  HomeAction initAction() => HomeAction();
 
   @override
-  Widget staticChildBuilder(BuildContext context) {
-    return EmptyScreen(
-      'assets/money-bender.png',
-      AppString.CAPTION_HOME_SCREEN,
-      ['9-6-884'],
-    );
-  }
+  Widget staticChildBuilder(BuildContext context) => EmptyScreen();
 
   @override
   Widget loadingViewBuilder(BuildContext context) => Container();
@@ -120,7 +114,7 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
       body: ListView(
         children: [
           FlatButton(
-            child: Text('Nambah Umur'),
+            child: Text('Add Age'),
             onPressed: () => action.increaseAge(),
           ),
           FlatButton(

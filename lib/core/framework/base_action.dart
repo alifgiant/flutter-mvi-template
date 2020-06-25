@@ -16,17 +16,18 @@ abstract class BaseAction<
   // load directly state data or load it from data source
   Future<S> initState();
 
+  void cancelAndClose<T>([T result]) {
+    navigator().goBack(result);
+  }
+
   @protected
   void render() => notifyListeners();
+
 
   @override
   Future<S> futureToRun() async {
     state = await initState();
     return state;
-  }
-
-  void cancelAndClose<T>([T result]) {
-    navigator().goBack(result);
   }
 
   @override
