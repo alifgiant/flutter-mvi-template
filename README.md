@@ -6,12 +6,12 @@ This template written on top [Stacked](https://pub.dev/packages/stacked) library
 
 Standard pattern for flutter let you code everything in the widget. This approach is easy to learn, but the more you learn you will notice "Separation of Concern (S.o.C)" is not the top priority of the standard pattern. There are a lot of popular pattern in community such as `BLoC`, `MVP`, `MVVM` and `MVI`. Personally i think MVI is the better way, so i wrote this template.
 
-In this template `setState((){...})` is replaced to `render()` and only available on `Action class`. So, just like before, every state change is triggering whole widget re-build, but it can only be accessed from action. The view can't trigger self re-build because it doesn't have state.
+In this template `setState((){...})` is replaced to `render()` and only available on `Action class`. So, just like before, every state change is triggering whole widget re-build, but it can only be accessed from action. The view can't trigger self re-build because it doesn't direct reference to action nor state.
 
 Also, action doesn't have access to context, so if it need to do an action which need a `context` it will be injected by a service locator (`get_it` library).
 
 ## How to code
-To use this pattern, your `StatefulWidget` is should be separated into `State`, `Action`, and `View`.
+1. To use this pattern, your `StatefulWidget` is should be separated into `State`, `Action`, and `View`.
 
 ```dart
 // previously
@@ -126,6 +126,10 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
   }
 }
 ```
+
+2. Every screen is a loadable ready screen. As you can see on above `action` example, initState is a `future` function. So in the meantime the screen will load view from `loadingViewBuilder`. You can load a spinner or shimmer on it.
+
+3. If the screen has a static child, that doesnt need to be rebuild pass it on `staticChildBuilder`.
 
 ## How to run
 
