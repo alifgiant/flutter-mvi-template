@@ -11,8 +11,7 @@ In this template `setState((){...})` is replaced to `render()` and only availabl
 Also, action doesn't have access to context, so if it need to do an action which need a `context` it will be injected by a service locator (`get_it` library).
 
 ## How to code
-
-1. To use this pattern, your `StatefulWidget` is should be separated into `State`, `Action`, and `View`.
+To use this pattern, your `StatefulWidget` is should be separated into `State`, `Action`, and `View`.
 
 ```dart
 // previously
@@ -107,7 +106,7 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(FeatherIcons.chevronLeft),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => action.cancelAndClose(),
         ),
         title: Text(AppString.TITLE_SETTING),
       ),
@@ -128,29 +127,27 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
 }
 ```
 
-2.
-
 ## How to run
 
-1. Just run
+- Just run
 
 ```bash
 $ flutter run
 ```
 
-2. Build json serializable before run
+- Build json serializable before run
 
 ```bash
 $ ./asBuildAndRun.sh
 ```
 
-3. (optional) watch json serializable change while run
+- (optional) watch json serializable change while run
 
 ```bash
 $ ./asWatchJson.sh
 ```
 
-4. (Tips) Just run on specific port (3600)
+- (Tips) Just run on specific port (3600)
 
 ```bash
 $ flutter run --web-port 3600
@@ -158,4 +155,17 @@ $ flutter run --web-port 3600
 
 ## Library usage
 
-1.
+1. [Stacked](https://pub.dev/packages/stacked), for base framework
+2. [GetIt](https://pub.dev/packages/get_it), for depedency injection
+3. [equatable](https://pub.dev/packages/equatable), for state equality check
+4. [flutter_color](https://pub.dev/packages/flutter_color), for color handling
+5. [json_annotation](https://pub.dev/packages/json_annotation), for json serializable
+6. [intl](https://pub.dev/packages/intl), for internationalization
+7. [fluro](https://pub.dev/packages/fluro), for navigation helper
+8. [blobs](https://pub.dev/packages/blobs), beautiful blob generator
+9. [cached_network_image](https://pub.dev/packages/cached_network_image), handle nertwork image caching
+10. [flutter_feather_icons](https://pub.dev/packages/flutter_feather_icons), preset icon
+11. [line_awesome_icons](https://pub.dev/packages/line_awesome_icons), preset icon
+12. [statusbar](https://pub.dev/packages/statusbar), set status bar color
+13. [google_fonts](https://pub.dev/packages/google_fonts), preset font
+14. [google_nav_bar](https://pub.dev/packages/google_nav_bar), beautiful bottom nav bar

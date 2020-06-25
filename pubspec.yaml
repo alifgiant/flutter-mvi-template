@@ -22,15 +22,12 @@ dependencies:
     sdk: flutter
   get_it: ^4.0.2
   stacked: ^1.6.0
+  equatable: ^1.2.0
   flutter_color: ^1.2.0
   json_annotation: ^3.0.1
-  # AI
-  speech_to_text: ^2.2.0
   # utils
   intl: ^0.16.1
   fluro: ^1.6.3
-  equatable: ^1.2.0
-  money2: ^1.4.0
   # views
   blobs: ^1.2.0
   cached_network_image: ^2.2.0+1
