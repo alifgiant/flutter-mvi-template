@@ -120,6 +120,10 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
             child: Text('Navigate to setting'),
             onPressed: () => action.navigateToSetting(),
           ),
+          FlatButton(
+            child: Text('Reload screen'),
+            onPressed: () => action.reloadScreen(),
+          ),
         ],
       ),
     );
@@ -158,6 +162,16 @@ $ ./asWatchJson.sh
 ```bash
 $ flutter run --web-port 3600
 ```
+
+## Other interesting things
+- This template has set app icon and app splash screen both on android and ios. So all you need to do is replace exisitng images.
+- Material Icon is disabled by default, because prefer to use custom icon.
+
+## Unfinished template
+- Internationalization template
+- Image sourcing template
+- Usecase - Repository pattern
+
 
 ## Library usage
 
