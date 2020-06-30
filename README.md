@@ -1,14 +1,12 @@
 # Template for MVI pattern in Flutter
 
-This template written on top [Stacked](https://pub.dev/packages/stacked) library.
+This template written on top [Get](https://pub.dev/packages/get) library.
 
 ## Why this template
 
 Standard pattern for flutter let you code everything in the widget. This approach is easy to learn, but the more you learn you will notice "Separation of Concern (S.o.C)" is not the top priority of the standard pattern. There are a lot of popular pattern in community such as `BLoC`, `MVP`, `MVVM` and `MVI`. Personally i think MVI is the better way, so i wrote this template.
 
 In this template `setState((){...})` is replaced to `render()` and only available on `Action class`. So, just like before, every state change is triggering whole widget re-build, but it can only be accessed from action. The view can't trigger self re-build because it doesn't direct reference to action nor state.
-
-Also, action doesn't have access to context, so if it need to do an action which need a `context` it will be injected by a service locator (`get_it` library).
 
 ## How to code
 1. To use this pattern, your `StatefulWidget` is should be separated into `State`, `Action`, and `View`.
@@ -81,7 +79,7 @@ class HomeAction extends BaseAction<HomeScreen, HomeAction, HomeState> {
   }
 
   void navigateToSetting() {
-    navigator().navigateTo(SettingScreen());
+    Get.to(SettingScreen());
   }
 }
 
@@ -99,8 +97,7 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
   Widget render(
     BuildContext context,
     HomeAction action,
-    HomeState state,
-    Widget staticChild,
+    HomeState state
   ) {
     return Scaffold(
       appBar: AppBar(
@@ -133,9 +130,7 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
 
 2. Every screen is a loadable ready screen. As you can see on above `action` example, initState is a `future` function which you can use to retrive data from a source. So, in the meantime the screen will load view from `loadingViewBuilder`. You can load a spinner or shimmer on it.
 
-3. If the screen has a static child, that doesnt need to be rebuild pass it on `staticChildBuilder`.
-
-4. `action.reloadScreen()` will retrigger `initState` future and reset isBusy flag.
+3. `action.reloadScreen()` will retrigger `onReady` future and reset isBusy flag.
 
 ## How to run
 
@@ -164,10 +159,12 @@ $ flutter run --web-port 3600
 ```
 
 ## Other interesting things
+
 - This template has set app icon and app splash screen both on android and ios. So all you need to do is replace exisitng images.
 - Material Icon is disabled by default, because prefer to use custom icon.
 
 ## Unfinished template
+
 - [ ] Internationalization template
 - [ ] Image sourcing template
 - [ ] Usecase - Repository pattern
@@ -175,8 +172,8 @@ $ flutter run --web-port 3600
 
 ## Library usage
 
-1. [Stacked](https://pub.dev/packages/stacked), for base framework
-2. [GetIt](https://pub.dev/packages/get_it), for depedency injection
+1. [get](https://pub.dev/packages/get), for micro framework.
+2. [get_storage](https://pub.dev/packages/get_storage), for fast storage solution.
 3. [equatable](https://pub.dev/packages/equatable), for state equality check
 4. [flutter_color](https://pub.dev/packages/flutter_color), for color handling
 5. [json_annotation](https://pub.dev/packages/json_annotation), for json serializable
