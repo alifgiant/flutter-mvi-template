@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_color/flutter_color.dart';
 
-class AppColor {
+class ResColor extends HexColor {
+  final String hexColor;
+  ResColor(this.hexColor) : super(hexColor);
+
   // solid
-  static Color lightGrey = HexColor('F3F3F3');
-  static Color lightOrange = HexColor('FFB400');
-  static Color darkOrange = HexColor('EB7E44');
-  static Color darkBlue = HexColor('04294F');
+  static ResColor lightRed = ResColor('FB7E77');
+  static ResColor lightGreen = ResColor('74BE5A');
+  static ResColor lightGrey = ResColor('F3F3F3');
+  static ResColor lightYellow = ResColor('EBDA82');
+  static ResColor darkYellow = ResColor('E4C419');
+  static ResColor lightOrange = ResColor('FFB400');
+  static ResColor darkOrange = ResColor('EB7E44');
+  static ResColor lightBlue = ResColor('667DA9');
+  static ResColor darkBlue = ResColor('04294F');
 
   // gradient
   static Gradient cardGradient = LinearGradient(colors: <Color>[

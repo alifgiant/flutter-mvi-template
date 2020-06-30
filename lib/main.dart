@@ -1,26 +1,31 @@
-import 'package:aset_ku/core/framework/navigation_service.dart';
-import 'package:aset_ku/core/framework/service_locator.dart';
-import 'package:aset_ku/core/resources/app_color.dart';
-import 'package:aset_ku/core/resources/app_text_style.dart';
+import 'package:aset_ku/core/resources/res_color.dart';
+import 'package:aset_ku/core/resources/res_text_style.dart';
+import 'package:aset_ku/core/utils/framework_service_locator.dart';
+import 'package:aset_ku/core/utils/money_utils.dart' as MoneyUtils;
 import 'package:aset_ku/feature/home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:statusbar/statusbar.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:get/get.dart';
 
 void main() {
-  GetIt.instance.setupLocator();
+  MoneyUtils.registerMoneyType();
+  Get.setupFrameworkLocator();
 
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  void setupStatusBar() {
+    FlutterStatusbarcolor.setStatusBarColor(ResColor.darkBlue);
+    FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+  }
+
   @override
   Widget build(BuildContext context) {
-    StatusBar.color(AppColor.darkBlue);
-    return MaterialApp(
+    setupStatusBar();
+    return GetMaterialApp(
       title: 'Aset Ku',
       theme: getAppLightTheme(),
-      navigatorKey: GetIt.I.get<NavigationService>().navigatorKey,
       debugShowCheckedModeBanner: false, // TODO: remove banner
       home: HomeScreen(),
     );
@@ -28,22 +33,22 @@ class MyApp extends StatelessWidget {
 
   ThemeData getAppLightTheme() {
     return ThemeData(
-      primaryColor: AppColor.darkBlue,
-      primaryColorDark: AppColor.darkBlue,
+      primaryColor: ResColor.darkBlue,
+      primaryColorDark: ResColor.darkBlue,
       appBarTheme: getAppBarTheme(),
-      accentColor: AppColor.darkOrange,
-      scaffoldBackgroundColor: AppColor.lightGrey,
+      accentColor: ResColor.darkOrange,
+      scaffoldBackgroundColor: ResColor.lightGrey,
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
   }
 
   AppBarTheme getAppBarTheme() {
     return AppBarTheme(
-      color: AppColor.lightGrey,
+      color: ResColor.lightGrey,
       elevation: 0,
       centerTitle: true,
-      iconTheme: IconThemeData(color: AppColor.darkBlue),
-      textTheme: TextTheme(headline6: AppTextStyle.appBarTitle),
+      iconTheme: IconThemeData(color: ResColor.darkBlue),
+      textTheme: TextTheme(headline6: ResTextStyle.appBarTitle),
     );
   }
 }

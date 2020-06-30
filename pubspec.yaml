@@ -20,20 +20,29 @@ dependencies:
   # framework
   flutter:
     sdk: flutter
-  get_it: ^4.0.2
-  stacked: ^1.6.0
-  equatable: ^1.2.0
+  uuid: ^2.1.0
+  get: ^3.1.2
+  meta: ^1.1.8
   flutter_color: ^1.2.0
   json_annotation: ^3.0.1
+  fluro: ^1.6.3
+  # AI
+  speech_to_text: ^2.2.0
   # utils
   intl: ^0.16.1
-  fluro: ^1.6.3
+  get_storage: ^1.2.1
+  money2: ^1.4.0
+  recase: ^3.0.0
+  equatable: ^1.2.0
   # views
   blobs: ^1.2.0
   cached_network_image: ^2.2.0+1
   flutter_feather_icons: ^1.0.3
-  line_awesome_icons: ^1.0.4+2
-  statusbar: ^1.1.0
+  flutter_statusbarcolor: ^0.2.3
+  line_awesome_icons:
+    git:
+      url: git://github.com/mateotomasgomez/line_awesome_icons_flutter.git
+      ref: master
   google_fonts: ^1.1.0
   google_nav_bar: ^2.2.0
 
