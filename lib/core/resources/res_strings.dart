@@ -2,7 +2,7 @@ class ResString {
   // APP BAR TITLE
   static const TITLE_APP = 'Aset Ku';
   static const TITLE_MEMBER = 'Kartu';
-  static const TITLE_SETTING = 'Akun';
+  static const TITLE_PROFILE = 'Akun';
   static const TITLE_NOTIFICATION = 'Notifikasi';
 
   // Screen Asset

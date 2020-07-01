@@ -3,7 +3,7 @@ import 'package:aset_ku/core/framework/base_view.dart';
 import 'package:aset_ku/core/model/Example.dart';
 import 'package:aset_ku/core/resources/res_strings.dart';
 import 'package:aset_ku/core/view/empty_screen.dart';
-import 'package:aset_ku/feature/setting/setting_screen.dart';
+import 'package:aset_ku/feature/playground/feature_check_screen.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -25,8 +25,8 @@ class HomeAction extends BaseAction<HomeScreen, HomeAction, HomeState> {
   @override
   Future<HomeState> initState() async => HomeState();
 
-  void goToSetting() {
-    Get.to(SettingScreen());
+  void goToPlayground() {
+    Get.to(FeatureCheckScreen());
   }
 }
 
@@ -53,7 +53,7 @@ class HomeScreen extends BaseView<HomeScreen, HomeAction, HomeState> {
         actions: [
           IconButton(
             icon: Icon(FeatherIcons.settings),
-            onPressed: () => action.goToSetting(),
+            onPressed: () => action.goToPlayground(),
           ),
         ],
       ),

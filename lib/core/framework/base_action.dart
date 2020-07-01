@@ -1,9 +1,9 @@
-import 'dart:async';
-
 import 'package:aset_ku/core/framework/base_view.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+enum SnackBarType { RED, GREEN, YELLOW, GREY }
 
 abstract class BaseAction<V extends BaseView<V, A, S>,
     A extends BaseAction<V, A, S>, S extends Equatable> extends GetxController {
@@ -14,8 +14,8 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
   // load directly state data or load it from data source
   Future<S> initState();
 
-  void reloadScreen() {
-    onReady();
+  Future reloadScreen() async {
+    await onReady();
   }
 
   void closeScreen<T>([T result]) {
@@ -30,7 +30,7 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
   Future<bool> onWillPop() async => true;
 
   @override
-  void onReady() async {
+  Future<void> onReady() async {
     if (!isBusy) {
       // make sure to change isBusy state if it alredy false before
       isBusy = true;
@@ -39,7 +39,53 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
 
     state = await initState();
     isBusy = false;
+
     render();
+  }
+
+  void showSnackBar({
+    String title,
+    String message,
+    SnackBarType type = SnackBarType.GREY, // neutral
+    EdgeInsets margin = const EdgeInsets.all(12),
+    int msDuration = 2500,
+  }) {
+    Color bgColor;
+    if (type == SnackBarType.RED) bgColor = Colors.red[400];
+    if (type == SnackBarType.GREEN) bgColor = Colors.green[400];
+    if (type == SnackBarType.YELLOW) bgColor = Colors.yellow[400];
+
+    Color txtColor;
+    if (type == SnackBarType.RED) txtColor = Colors.white;
+    if (type == SnackBarType.GREEN) txtColor = Colors.white;
+    if (type == SnackBarType.YELLOW) txtColor = Colors.black87;
+
+    Get.snackbar(
+      title,
+      message,
+      backgroundColor: bgColor,
+      colorText: txtColor,
+      duration: Duration(milliseconds: msDuration),
+      margin: margin,
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  }
+
+  Future<T> showSheet<T>(
+    Widget sheetWidget, {
+    String title, // TODO: add title
+    backgroundColor: Colors.white,
+  }) async {
+    return await Get.bottomSheet(
+      sheetWidget,
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+      ),
+    );
   }
 
   @override
