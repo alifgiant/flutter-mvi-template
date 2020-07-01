@@ -88,9 +88,6 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
   HomeAction initAction() => HomeAction();
 
   @override
-  Widget staticChildBuilder(BuildContext context) => EmptyScreen();
-
-  @override
   Widget loadingViewBuilder(BuildContext context) => Container();
 
   @override
@@ -127,6 +124,8 @@ class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
   }
 }
 ```
+
+see more example on /lib/feature/playground/feature_check_screen.dart
 
 2. Every screen is a loadable ready screen. As you can see on above `action` example, initState is a `future` function which you can use to retrive data from a source. So, in the meantime the screen will load view from `loadingViewBuilder`. You can load a spinner or shimmer on it.
 
