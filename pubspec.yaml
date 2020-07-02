@@ -30,7 +30,6 @@ dependencies:
   speech_to_text: ^2.2.0
   # utils
   intl: ^0.16.1
-  get_storage: ^1.2.1
   money2: ^1.4.0
   recase: ^3.0.0
   equatable: ^1.2.0
@@ -45,6 +44,13 @@ dependencies:
       ref: master
   google_fonts: ^1.1.0
   google_nav_bar: ^2.2.0
+
+  # hive (local db with encryption)
+  hive: ^1.4.1+1
+  path: ^1.7.0
+  path_provider: ^1.6.11
+
+
 
 dev_dependencies:
   # Test
