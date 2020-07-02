@@ -49,7 +49,7 @@ Future<Box> _openAppConfigBox() async {
   // final key = Hive.generateSecureKey();
 
   // temp static key
-  final key = [100, 991, 20302];
+  final key = List.generate(32, (index) => 100);
 
   _configBox = await Hive.openBox(
     AppConfigKey,
