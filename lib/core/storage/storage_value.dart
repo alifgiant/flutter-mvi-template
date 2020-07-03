@@ -1,12 +1,12 @@
-import 'package:hive/hive.dart';
+import 'package:get_storage/get_storage.dart';
 
 class StorageValue<T> {
   final String key;
   final T defaultValue;
-  final Box Function() getBox;
+  final GetStorage Function() getBox;
 
   StorageValue(this.key, this.defaultValue, this.getBox);
 
-  T get val => getBox().get(key, defaultValue: defaultValue);
-  set val(T newValue) => getBox().put(key, newValue);
+  T get val => getBox().read(key) ?? defaultValue;
+  set val(T newValue) => getBox().write(key, newValue);
 }

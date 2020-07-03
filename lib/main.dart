@@ -1,26 +1,15 @@
 import 'package:aset_ku/core/resources/res_color.dart';
 import 'package:aset_ku/core/resources/res_text_style.dart';
-import 'package:aset_ku/core/storage/app_config.dart';
 import 'package:aset_ku/core/utils/framework_service_locator.dart';
 import 'package:aset_ku/core/utils/money_utils.dart' as MoneyUtils;
 import 'package:aset_ku/feature/home/screen/home_screen.dart';
-import 'package:aset_ku/feature/utils/feature_service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:get/get.dart';
 
-/// Things that run on splash screen
-void main() async {
-  // config setup must be first to be called
-  // to make sure In Memory Storage is ready
-  await AppConfig.setup();
-
-  // Setup available money types
+void main() {
   MoneyUtils.registerMoneyType();
-
-  // Depedency Ijection (DI) setup
   Get.setupFrameworkLocator();
-  Get.setupFeatureLocator();
 
   runApp(MyApp());
 }
