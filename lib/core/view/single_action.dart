@@ -26,7 +26,7 @@ class SingleAction extends StatelessWidget {
         horizontal: 32,
       ),
       icon: Icon(icon, color: Colors.white),
-      label: Text(text, style: ResTextStyle.whiteTextButton18),
+      label: Text(text, style: ResTextStyle.whiteTextButton16),
     );
   }
 }

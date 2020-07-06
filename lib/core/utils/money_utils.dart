@@ -3,8 +3,8 @@ import 'package:money2/money2.dart';
 Currency standardRpSetting = Currency.create(
   'IDR', // country code
   2, // decimal point
-  symbol: 'Rp',
-  pattern: '###,###.##',
+  symbol: 'Rp.',
+  pattern: 'S ###,###.##',
 );
 
 Currency standardRpNoSymbolSetting = Currency.create(

@@ -1,8 +1,9 @@
 class ResString {
   // APP BAR TITLE
   static const TITLE_APP = 'Aset Ku';
-  static const TITLE_MEMBER = 'Kartu';
   static const TITLE_PROFILE = 'Akun';
+  static const TITLE_CUSTOMIZE = 'Kostumisasi Fitur';
+  static const TITLE_VOTE = 'Vote Fitur';
   static const TITLE_NOTIFICATION = 'Notifikasi';
 
   // Screen Asset
@@ -18,19 +19,25 @@ class ResString {
   static const TITLE_ASSET_HINT_TOTAL = 'Jumlahkan ke Perhitungan Total?';
   static const TITLE_ASSET_HINT_COLOR = 'Beri label warna?';
 
-  // Transaction Asset
+  // Screen Transaction
   static const TITLE_TRANSACTION = 'Transaksi';
   static const TITLE_TRANSACTION_UPDATE = 'Edit Transaksi';
   static const TITLE_TRANSACTION_CREATION = 'Transaksi Baru';
+  static const TITLE_TRANSACTION_SELECTION = 'Pilih Jenis Aset';
   static const TITLE_TRANSACTION_DATA = 'Data Transaksi';
+
+  // Screen Member
+  static const TITLE_MEMBER = 'Kartu';
+  static const TITLE_MEMBER_UPDATE = 'Edit Kartu';
+  static const TITLE_MEMBER_CREATION = 'Kartu Baru';
 
   // IMAGES HEADLINE
   static const CAPTION_HOME_SCREEN =
       'Mulai Kendalikan Aset Mu Dengan Menekan Tombol `+`';
-
-  static const HEADLINE_TRANSACTION_SELECTION = 'Pilih Jenis Aset';
   static const CAPTION_TRANSACTION_SCREEN =
-      'Mulai Kendalikan Aset Mu Dengan Menekan Tombol `+`';
+      'Mulai Catat Transaksi Mu Dengan Menekan Tombol `+`';
+  static const CAPTION_MEMBER_SCREEN =
+      'Digitalkan Kartu Member Mu Dengan Menekan Tombol `+`';
 
   // UNIVARSAL
   static const YES = 'Ya';

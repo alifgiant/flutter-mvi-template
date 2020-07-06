@@ -23,7 +23,6 @@ class EasterEgg {
     scheduleCancelClick();
 
     clicked += 1;
-    print('title: $clicked');
     if (clicked >= maxClicked) {
       Get.dialog(Dialog(
         child: Wrap(
@@ -56,6 +55,7 @@ class EasterEgg {
                 textColor: Colors.white,
                 onPressed: () {
                   if (typedPassword == password) {
+                    Get.back();
                     Get.to(FeatureCheckScreen());
                   }
                 },
@@ -65,6 +65,5 @@ class EasterEgg {
         ),
       ));
     }
-    print('app bar click');
   }
 }

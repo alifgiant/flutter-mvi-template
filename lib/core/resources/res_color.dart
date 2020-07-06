@@ -9,6 +9,7 @@ class ResColor extends HexColor {
   static ResColor lightRed = ResColor('FB7E77');
   static ResColor lightGreen = ResColor('74BE5A');
   static ResColor lightGrey = ResColor('F3F3F3');
+  static Color lightGrey300 = Colors.grey[300];
   static ResColor lightYellow = ResColor('EBDA82');
   static ResColor darkYellow = ResColor('E4C419');
   static ResColor lightOrange = ResColor('FFB400');
@@ -18,8 +19,8 @@ class ResColor extends HexColor {
 
   // gradient
   static Gradient cardGradient = LinearGradient(colors: <Color>[
-    HexColor('9531F6'),
-    HexColor('2D72F1'),
+    HexColor('04294F'),
+    HexColor('215C98'),
   ]);
 
   // gradient

@@ -16,7 +16,7 @@ class ResTextStyle {
     fontWeight: FontWeight.w700,
   );
 
-  static final TextStyle whiteTextButton18 = GoogleFonts.raleway(
+  static final TextStyle whiteTextButton16 = GoogleFonts.raleway(
     fontSize: 16,
     color: Colors.white,
     fontWeight: FontWeight.w700,

@@ -27,6 +27,7 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
     if (state != null) update();
   }
 
+  // TODO: research more, not works
   Future<bool> onWillPop() async => true;
 
   @override
@@ -44,11 +45,12 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
   }
 
   void showSnackBar({
+    @required String message,
     String title,
-    String message,
     SnackBarType type = SnackBarType.GREY, // neutral
     EdgeInsets margin = const EdgeInsets.all(12),
     int msDuration = 2500,
+    SnackPosition position = SnackPosition.BOTTOM,
   }) {
     Color bgColor;
     if (type == SnackBarType.RED) bgColor = Colors.red[400];
@@ -67,17 +69,19 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
       colorText: txtColor,
       duration: Duration(milliseconds: msDuration),
       margin: margin,
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: position,
     );
   }
 
   Future<T> showSheet<T>(
-    Widget sheetWidget, {
+    List<Widget> contents, {
     String title, // TODO: add title
-    backgroundColor: Colors.white,
+    bool isScrollControlled = true,
+    Color backgroundColor: Colors.white,
   }) async {
     return await Get.bottomSheet(
-      sheetWidget,
+      Wrap(children: contents),
+      isScrollControlled: isScrollControlled,
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(

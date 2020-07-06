@@ -22,22 +22,26 @@ dependencies:
     sdk: flutter
   uuid: ^2.1.0
   get: ^3.1.2
+  fluro: ^1.6.3
   meta: ^1.1.8
   flutter_color: ^1.2.0
   json_annotation: ^3.0.1
-  fluro: ^1.6.3
   # AI
   speech_to_text: ^2.2.0
   # utils
+  hive: ^1.4.1+1
   intl: ^0.16.1
   get_storage: ^1.2.1
   money2: ^1.4.0
   recase: ^3.0.0
   equatable: ^1.2.0
+  path: ^1.7.0
+  path_provider: ^1.6.11
+  expressions: ^0.1.5
   # views
+  auto_size_text: ^2.1.0
   blobs: ^1.2.0
   cached_network_image: ^2.2.0+1
-  flutter_feather_icons: ^1.0.3
   flutter_statusbarcolor: ^0.2.3
   line_awesome_icons:
     git:
@@ -74,7 +78,6 @@ flutter:
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

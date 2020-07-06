@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:aset_ku/core/framework/base_action.dart';
+import 'package:get/get.dart';
 
-extension MessageUtils on BuildContext {
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
-      SnackBar snackbar) {
-    Scaffold.of(this).showSnackBar(snackbar);
-  }
-
-  void showComingSoonNotice() => showSnackBar(
-        SnackBar(content: Text('Coming Soon..')),
+extension MessageUtils on BaseAction {
+  void showComingSoonNotice() => this.showSnackBar(
+        message: 'Coming Soon..',
+        position: SnackPosition.TOP,
       );
 }
