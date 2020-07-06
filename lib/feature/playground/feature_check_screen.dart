@@ -3,8 +3,8 @@ import 'package:aset_ku/core/framework/base_view.dart';
 import 'package:aset_ku/core/storage/app_config.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 // ignore: must_be_immutable
 class FeatureCheckState extends Equatable {
@@ -41,7 +41,7 @@ class FeatureCheckScreen extends BaseView<FeatureCheckScreen,
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(FeatherIcons.chevronLeft),
+          icon: Icon(LineAwesomeIcons.angle_left),
           onPressed: () => action.closeScreen(),
         ),
         title: Text('Feature Check Screen'),
@@ -106,11 +106,9 @@ class FeatureCheckScreen extends BaseView<FeatureCheckScreen,
           );
         }),
         actionButton('bottom sheet option', () {
-          action.showSheet(ListView.builder(
-            shrinkWrap: true,
-            itemCount: 20,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (ctx, i) => FlatButton(
+          action.showSheet(List.generate(
+            20,
+            (i) => FlatButton(
               child: Text('opsi - ${i + 1}'),
               onPressed: () {
                 Get.back();

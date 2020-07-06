@@ -6,8 +6,8 @@ import 'package:aset_ku/core/view/empty_screen.dart';
 import 'package:aset_ku/feature/playground/feature_check_screen.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 // ignore: must_be_immutable
 class HomeState extends Equatable {
@@ -52,14 +52,14 @@ class HomeScreen extends BaseView<HomeScreen, HomeAction, HomeState> {
         title: Text(ResString.TITLE_APP),
         actions: [
           IconButton(
-            icon: Icon(FeatherIcons.settings),
+            icon: Icon(LineAwesomeIcons.wrench),
             onPressed: () => action.goToPlayground(),
           ),
         ],
       ),
       body: state.example.isEmpty ? createEmpty() : createBody(context, action),
       floatingActionButton: FloatingActionButton(
-        child: Icon(FeatherIcons.plus),
+        child: Icon(LineAwesomeIcons.plus),
         heroTag: "homeAdd",
         onPressed: () {},
       ),
