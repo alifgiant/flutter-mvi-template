@@ -83,7 +83,7 @@ class HomeAction extends BaseAction<HomeScreen, HomeAction, HomeState> {
   }
 }
 
-class HomeView extends BaseView<HomeScreen, HomeAction, HomeState> {
+class HomeScreen extends BaseView<HomeScreen, HomeAction, HomeState> {
   @override
   HomeAction initAction() => HomeAction();
 
