@@ -61,7 +61,7 @@ class HomeState extends State<HomeScreen> {
 
 // after
 
-// ignore: must_be_immutable
+
 class HomeState extends Equatable {
   int age = 0;
 

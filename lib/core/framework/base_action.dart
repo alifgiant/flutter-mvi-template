@@ -1,12 +1,11 @@
 import 'package:aset_ku/core/framework/base_view.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 enum SnackBarType { RED, GREEN, YELLOW, GREY }
 
 abstract class BaseAction<V extends BaseView<V, A, S>,
-    A extends BaseAction<V, A, S>, S extends Equatable> extends GetxController {
+    A extends BaseAction<V, A, S>, S> extends GetxController {
   S state;
 
   bool isBusy = true; // must be started as true

@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 
-// ignore: must_be_immutable
 class HomeState extends Equatable {
   List<Example> example;
 

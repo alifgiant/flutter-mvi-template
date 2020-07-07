@@ -1,12 +1,9 @@
 import 'package:aset_ku/core/framework/base_action.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class BaseView<
-    V extends BaseView<V, A, S>,
-    A extends BaseAction<V, A, S>,
-    S extends Equatable> extends StatelessWidget {
+abstract class BaseView<V extends BaseView<V, A, S>,
+    A extends BaseAction<V, A, S>, S> extends StatelessWidget {
   A initAction();
 
   @override

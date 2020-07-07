@@ -1,13 +1,10 @@
 import 'package:aset_ku/core/framework/base_action.dart';
 import 'package:aset_ku/core/framework/base_view.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class BaseChildView<
-    V extends BaseView<V, A, S>,
-    A extends BaseAction<V, A, S>,
-    S extends Equatable> extends StatelessWidget {
+abstract class BaseChildView<V extends BaseView<V, A, S>,
+    A extends BaseAction<V, A, S>, S> extends StatelessWidget {
   Widget render(BuildContext context, A action, S state);
 
   final A action = Get.find<A>();
