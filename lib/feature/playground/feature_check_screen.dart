@@ -7,8 +7,6 @@ import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 class FeatureCheckState {
   var isDummyOn = AppConfig.isDummyOn;
-  @override
-  List<Object> get props => [];
 }
 
 class FeatureCheckAction extends BaseAction<FeatureCheckScreen,

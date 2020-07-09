@@ -64,9 +64,6 @@ class HomeState extends State<HomeScreen> {
 
 class HomeState {
   int age = 0;
-
-  @override
-  List<Object> get props => [age];
 }
 
 class HomeAction extends BaseAction<HomeScreen, HomeAction, HomeState> {

@@ -14,9 +14,6 @@ class HomeState {
   HomeState({
     this.example = const [],
   });
-
-  @override
-  List<Object> get props => [example];
 }
 
 class HomeAction extends BaseAction<HomeScreen, HomeAction, HomeState> {
