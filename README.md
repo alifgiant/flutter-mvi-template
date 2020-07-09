@@ -62,7 +62,7 @@ class HomeState extends State<HomeScreen> {
 // after
 
 
-class HomeState extends Equatable {
+class HomeState {
   int age = 0;
 
   @override
@@ -160,7 +160,7 @@ $ flutter run --web-port 3600
 ## Other interesting things
 
 - This template has set app icon and app splash screen both on android and ios. So all you need to do is replace exisitng images.
-- Material Icon is disabled by default, because prefer to use custom icon.
+- Material Icon is disabled by default, because its more beautiful to use custom icon [Icon8 LineAwesome](https://icons8.com/line-awesome).
 
 ## Unfinished template
 
@@ -170,18 +170,5 @@ $ flutter run --web-port 3600
 - [ ] Unit test example
 
 ## Library usage
+See complete list [pubspec](pubspec.yaml)
 
-1. [get](https://pub.dev/packages/get), for micro framework.
-2. [get_storage](https://pub.dev/packages/get_storage), for fast storage solution.
-3. [equatable](https://pub.dev/packages/equatable), for state equality check
-4. [flutter_color](https://pub.dev/packages/flutter_color), for color handling
-5. [json_annotation](https://pub.dev/packages/json_annotation), for json serializable
-6. [intl](https://pub.dev/packages/intl), for internationalization
-7. [fluro](https://pub.dev/packages/fluro), for navigation helper
-8. [blobs](https://pub.dev/packages/blobs), beautiful blob generator
-9. [cached_network_image](https://pub.dev/packages/cached_network_image), handle nertwork image caching
-10. [flutter_feather_icons](https://pub.dev/packages/flutter_feather_icons), preset icon
-11. [line_awesome_icons](https://pub.dev/packages/line_awesome_icons), preset icon
-12. [statusbar](https://pub.dev/packages/statusbar), set status bar color
-13. [google_fonts](https://pub.dev/packages/google_fonts), preset font
-14. [google_nav_bar](https://pub.dev/packages/google_nav_bar), beautiful bottom nav bar

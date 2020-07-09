@@ -4,12 +4,11 @@ import 'package:aset_ku/core/model/Example.dart';
 import 'package:aset_ku/core/resources/res_strings.dart';
 import 'package:aset_ku/core/view/empty_screen.dart';
 import 'package:aset_ku/feature/playground/feature_check_screen.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 
-class HomeState extends Equatable {
+class HomeState {
   List<Example> example;
 
   HomeState({

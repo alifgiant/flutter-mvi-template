@@ -1,12 +1,11 @@
 import 'package:aset_ku/core/framework/base_action.dart';
 import 'package:aset_ku/core/framework/base_view.dart';
 import 'package:aset_ku/core/storage/app_config.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 
-class FeatureCheckState extends Equatable {
+class FeatureCheckState {
   var isDummyOn = AppConfig.isDummyOn;
   @override
   List<Object> get props => [];
