@@ -17,22 +17,57 @@ class ResColor extends HexColor {
   static ResColor lightBlue = ResColor('667DA9');
   static ResColor darkBlue = ResColor('04294F');
 
+  static createGradient(List<ResColor> colors) {
+    return LinearGradient(
+      colors: colors,
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    );
+  }
+
   // gradient
-  static Gradient cardGradient = LinearGradient(colors: <Color>[
-    HexColor('04294F'),
-    HexColor('215C98'),
+  static Gradient greyGradient = createGradient([
+    ResColor('6D8385'),
+    ResColor('B9C0BD'),
   ]);
 
-  // gradient
-  static Gradient budgetGradient = LinearGradient(colors: <Color>[
-    HexColor('5581F1'),
-    HexColor('1153FC'),
-  ], end: Alignment.topLeft, begin: Alignment.bottomRight);
+  static Gradient brownGradient = createGradient([
+    ResColor('A56757'),
+    ResColor('DE9B89'),
+  ]);
 
-  static Gradient budgetBarGradient = LinearGradient(
-    colors: <Color>[
-      HexColor('A1051D'),
-      HexColor('F5515F'),
-    ],
-  );
+  static Gradient darkBlueGradient = createGradient([
+    ResColor('04294F'),
+    ResColor('215C98'),
+  ]);
+
+  static Gradient blueGradient = createGradient([
+    ResColor('1153FC'),
+    ResColor('5581F1'),
+  ]);
+
+  static Gradient redGradient = createGradient([
+    ResColor('A1051D'),
+    ResColor('F5515F'),
+  ]);
+
+  static Gradient yellowGradient = createGradient([
+    ResColor('E5A933'),
+    ResColor('FFCB74'),
+  ]);
+
+  static Gradient darkGreenGradient = createGradient([
+    ResColor('005A26'),
+    ResColor('00BA87'),
+  ]);
+
+  static Gradient greenGradient = createGradient([
+    ResColor('00BA87'),
+    ResColor('00A490'),
+  ]);
+
+  static Gradient pinkGradient = createGradient([
+    ResColor('E56CE3'),
+    ResColor('FF6CBA'),
+  ]);
 }

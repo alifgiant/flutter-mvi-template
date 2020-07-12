@@ -30,6 +30,11 @@ class ResString {
   static const TITLE_MEMBER = 'Kartu';
   static const TITLE_MEMBER_UPDATE = 'Edit Kartu';
   static const TITLE_MEMBER_CREATION = 'Kartu Baru';
+  static const TITLE_MEMBER_DATA = 'Data Kartu';
+  static const TITLE_MEMBER_HINT_NAME = 'Ini Kartu Anggota Apa?';
+  static const TITLE_MEMBER_HINT_NUMBER = 'Tulis Nomor Kartu Mu';
+  static const TITLE_MEMBER_HINT_COLOR = 'Pilih Warna';
+  static const TITLE_MEMBER_CARD = 'Visualisasi Kartu';
 
   // IMAGES HEADLINE
   static const CAPTION_HOME_SCREEN =

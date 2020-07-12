@@ -1,4 +1,6 @@
 import 'package:aset_ku/core/framework/base_view.dart';
+import 'package:aset_ku/core/resources/res_data_source.dart';
+import 'package:aset_ku/core/storage/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -100,4 +102,14 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
 
   @override
   int get hashCode => state.hashCode;
+}
+
+typedef RepoSelector<T> = T Function(dynamic param1);
+
+extension GetRepository on GetImpl {
+  T getRepository<T>(ResDataSource source) {
+    var selectedSource = source;
+    if (AppConfig.isDummyOn.val) selectedSource = ResDataSource.Dummy;
+    return this.find<T>(tag: selectedSource.toString());
+  }
 }

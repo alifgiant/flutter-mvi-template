@@ -10,7 +10,7 @@ class ContainerUtils {
   ///
   /// ref: https://www.instagram.com/p/CBt1W6FgYLv/
   static BoxShadow createShadow(
-    int elevation, {
+    double elevation, {
     Color backgroundColor: Colors.black,
     double opacity: 0.4,
   }) {

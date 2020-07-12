@@ -8,7 +8,7 @@ import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:get/get.dart';
 
 void main() async {
-  Get.setupFrameworkLocator();
+  FrameworkServiceLocator.setupFrameworkLocator();
 
   await AppConfig.setup();
 
