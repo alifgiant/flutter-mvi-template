@@ -6,16 +6,19 @@ class ResColor extends HexColor {
   ResColor(this.hexColor) : super(hexColor);
 
   // solid
-  static ResColor lightRed = ResColor('FB7E77');
-  static ResColor lightGreen = ResColor('74BE5A');
+  static ResColor lightRed = ResColor('F5515F');
+  static ResColor darkRed = ResColor('A1051D');
+  static ResColor lightGreen = ResColor('00A490');
   static ResColor lightGrey = ResColor('F3F3F3');
   static Color lightGrey300 = Colors.grey[300];
-  static ResColor lightYellow = ResColor('EBDA82');
-  static ResColor darkYellow = ResColor('E4C419');
+  static ResColor lightYellow = ResColor('FFCB74');
+  static ResColor darkYellow = ResColor('E5A933');
   static ResColor lightOrange = ResColor('FFB400');
   static ResColor darkOrange = ResColor('EB7E44');
-  static ResColor lightBlue = ResColor('667DA9');
+  static ResColor lightBlue = ResColor('1153FC');
   static ResColor darkBlue = ResColor('04294F');
+  static ResColor lightPink = ResColor('FF6CBA');
+  static ResColor darkPink = ResColor('E56CE3');
 
   static createGradient(List<ResColor> colors) {
     return LinearGradient(
@@ -37,18 +40,18 @@ class ResColor extends HexColor {
   ]);
 
   static Gradient darkBlueGradient = createGradient([
-    ResColor('04294F'),
+    ResColor.darkBlue,
     ResColor('215C98'),
   ]);
 
   static Gradient blueGradient = createGradient([
-    ResColor('1153FC'),
+    ResColor.lightBlue,
     ResColor('5581F1'),
   ]);
 
   static Gradient redGradient = createGradient([
-    ResColor('A1051D'),
-    ResColor('F5515F'),
+    ResColor.darkRed,
+    ResColor.lightRed,
   ]);
 
   static Gradient yellowGradient = createGradient([
@@ -58,16 +61,16 @@ class ResColor extends HexColor {
 
   static Gradient darkGreenGradient = createGradient([
     ResColor('005A26'),
-    ResColor('00BA87'),
+    ResColor('377C61'),
   ]);
 
   static Gradient greenGradient = createGradient([
     ResColor('00BA87'),
-    ResColor('00A490'),
+    ResColor.lightGreen,
   ]);
 
   static Gradient pinkGradient = createGradient([
-    ResColor('E56CE3'),
-    ResColor('FF6CBA'),
+    ResColor.darkPink,
+    ResColor.lightPink,
   ]);
 }

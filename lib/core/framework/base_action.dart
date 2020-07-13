@@ -1,6 +1,7 @@
 import 'package:aset_ku/core/framework/base_view.dart';
 import 'package:aset_ku/core/resources/res_data_source.dart';
 import 'package:aset_ku/core/storage/app_config.dart';
+import 'package:aset_ku/core/utils/debouncer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,20 +13,25 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
 
   bool isBusy = true; // must be started as true
 
+  final Debouncer reloadDbn = Debouncer(Duration(milliseconds: 300));
+  final Debouncer renderDbn = Debouncer(Duration(milliseconds: 300));
+
   // load directly state data or load it from data source
   Future<S> initState();
-
-  Future reloadScreen() async {
-    await onReady();
-  }
 
   void closeScreen<T>([T result]) {
     Get.back(result: result);
   }
 
+  /// reloadScreen will only be called once after 300ms has passed
+  Future reloadScreen() async {
+    await reloadDbn.runLastFuture(() => onReady());
+  }
+
+  /// render will only be called once after 300ms has passed
   @protected
   void render() {
-    if (state != null) update();
+    if (state != null) renderDbn.runLastCall(() => update());
   }
 
   // TODO: research more, not works

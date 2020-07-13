@@ -8,15 +8,15 @@ class EasterEgg {
   static const String password = "lux in side";
   static const int maxClicked = 7;
 
-  Debouncer debugScreenDebouncer = Debouncer();
+  Debouncer clickDebouncer = Debouncer();
 
   String typedPassword = '';
   int clicked = 0;
 
-  void scheduleCancelClick() async {
-    debugScreenDebouncer.runAtEnd(() {
-      clicked = 0;
-    });
+  /// cancel  click count when window duration
+  void scheduleCancelClick() {
+    // reset click to 0 if debounce duration meet
+    clickDebouncer.runLastCall(() => clicked = 0);
   }
 
   void onClick() {
