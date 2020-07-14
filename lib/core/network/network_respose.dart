@@ -7,7 +7,7 @@ class JsonResponse extends Response<Map<String, dynamic>> {
   JsonResponse(this.response) : super(response);
 }
 
-class StringResponse extends Response {
+class StringResponse extends Response<String> {
   @override
   final String response;
 

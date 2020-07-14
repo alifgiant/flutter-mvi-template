@@ -19,6 +19,9 @@ class Result<T> {
 
   bool get isSuccess => data != null;
   bool get isError => failure != null;
+
+  /// condition wheter result either success or error
+  bool get isUnknown => rawResponse != null;
 }
 
 /// only allow to retrieve 2 type
@@ -26,7 +29,7 @@ class Result<T> {
 abstract class Response<T> {
   final T response;
 
-  Response(this.response);
+  const Response(this.response);
 }
 
 // consider using
@@ -34,5 +37,7 @@ abstract class Response<T> {
 class Failure<T> {
   final T data;
 
-  Failure(this.data);
+  const Failure(this.data);
+
+  static const Failure parseError = Failure('Failed Parse');
 }

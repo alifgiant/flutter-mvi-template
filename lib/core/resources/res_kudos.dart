@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class ResKudos {
-  static const ICON_8 = KudoSite("Icon8", "https://icons8.com");
+  static const ICON_8 = KudoSite('Icon8', 'https://icons8.com');
 
   static const List<KudoSite> all = const [
     ICON_8,

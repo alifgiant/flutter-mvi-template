@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EasterEgg {
-  static const String password = "lux in side";
+  static const String password = 'lux in side';
   static const int maxClicked = 7;
 
   Debouncer clickDebouncer = Debouncer();
