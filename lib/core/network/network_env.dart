@@ -39,8 +39,8 @@ class NetworkEnv {
     "/api",
   ));
 
-  static const NetworkEnv DEBUG = const NetworkEnv._(UriData(
-    "debug",
+  static const NetworkEnv STAGING = const NetworkEnv._(UriData(
+    "staging",
     PROTOCOL_HTTPS,
     "asetdev.luxinfity.com",
     "",

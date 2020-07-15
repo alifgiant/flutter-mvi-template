@@ -49,8 +49,8 @@ class NetworkToken extends Equatable {
   factory NetworkToken.fromJson(Map<String, dynamic> json) =>
       _$NetworkTokenFromJson(json);
 
-  static Map<String, dynamic> builJson(NetworkToken token) =>
+  static Map<String, dynamic> buildJson(NetworkToken token) =>
       _$NetworkTokenToJson(token);
 
-  Map<String, dynamic> toJson() => builJson(this);
+  Map<String, dynamic> toJson() => buildJson(this);
 }

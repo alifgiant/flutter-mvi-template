@@ -1,11 +1,14 @@
 import 'package:aset_ku/core/repository/result.dart';
 
-class MessageFailure extends Failure<String> {
+class NetworkFailure<T> extends Failure<T> {
   final int errorCode;
-  @override
-  final String data;
+  const NetworkFailure(T data, [this.errorCode = 0]) : super(data);
+}
 
-  const MessageFailure(this.data, [this.errorCode]) : super(data);
+class MessageFailure extends NetworkFailure<String> {
+  const MessageFailure(String data, [int errorCode = 0])
+      : super(data, errorCode);
+
   static const MessageFailure connectionFail = MessageFailure(
     'Koneksi terputus, hubungkan kembali ponsel ke internet',
   );
@@ -16,14 +19,13 @@ class MessageFailure extends Failure<String> {
 
   MessageFailure code(int code) => MessageFailure(this.data, code);
 
-  static const MessageFailure parseFail = MessageFailure('Data Parsing Failed');
+  static const MessageFailure parseFail = MessageFailure(
+    'Network Data Parsing Failed',
+  );
   static const MessageFailure canceled = MessageFailure('Request di cancel');
 }
 
-class MessagesFailure extends Failure<List<String>> {
-  final int errorCode;
-  @override
-  final List<String> data;
-
-  const MessagesFailure(this.data, [this.errorCode]) : super(data);
+class MessagesFailure extends NetworkFailure<List<String>> {
+  const MessagesFailure(List<String> data, [int errorCode = 0])
+      : super(data, errorCode);
 }
