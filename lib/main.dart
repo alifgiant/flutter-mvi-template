@@ -3,20 +3,17 @@ import 'package:aset_ku/core/resources/res_text_style.dart';
 import 'package:aset_ku/core/storage/app_config.dart';
 import 'package:aset_ku/core/utils/service/framework_service_locator.dart';
 import 'package:aset_ku/feature/home/screen/home_screen.dart';
-import 'package:aset_ku/feature/utils/feature_service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:get/get.dart';
 
 void main({
   FrameworkServiceLocator frSl = const FrameworkServiceLocator(),
-  FeatureServiceLocator feSl = const FeatureServiceLocator(),
   AppConfig appConfig = const AppConfig(),
   Widget root = const MyApp(),
 }) async {
   // DI Setup
   frSl.setupFrameworkLocator(Get);
-  feSl.setupFeatureLocator();
 
   // config initilizer
   await appConfig.setup();
