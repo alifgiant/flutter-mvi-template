@@ -10,6 +10,8 @@ const AppConfigKey = 'AsetKuLocalStorage';
 /// Supports Android, iOS, Web, Mac, Linux, and fuchsia and Windows**.
 /// Can store String, int, double, Map and List
 class AppConfig {
+  const AppConfig();
+
   // TODO: set to false
   static final isDummyOn = RawValue<bool>('isDummyOn', true);
 
@@ -21,7 +23,7 @@ class AppConfig {
   );
 
   // creation
-  static Future setup() => GetStorage.init(AppConfigKey);
+  Future setup() => GetStorage.init(AppConfigKey);
 
   // clearing
   static Future clear() => configBox().erase();

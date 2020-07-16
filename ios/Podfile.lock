@@ -1,8 +1,15 @@
 PODS:
+  - barcode_scan (0.0.1):
+    - Flutter
+    - MTBBarcodeScanner
+    - SwiftProtobuf
   - Flutter (1.0.0)
+  - flutter_statusbarcolor (0.0.1):
+    - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - MTBBarcodeScanner (5.0.11)
   - path_provider (0.0.1):
     - Flutter
   - path_provider_linux (0.0.1):
@@ -11,28 +18,37 @@ PODS:
     - Flutter
   - speech_to_text (0.0.1):
     - Flutter
+    - Try
   - sqflite (0.0.1):
     - Flutter
     - FMDB (~> 2.7.2)
-  - statusbar (0.0.1):
-    - Flutter
+  - SwiftProtobuf (1.10.2)
+  - Try (2.1.1)
 
 DEPENDENCIES:
+  - barcode_scan (from `.symlinks/plugins/barcode_scan/ios`)
   - Flutter (from `Flutter`)
+  - flutter_statusbarcolor (from `.symlinks/plugins/flutter_statusbarcolor/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - path_provider_linux (from `.symlinks/plugins/path_provider_linux/ios`)
   - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
   - speech_to_text (from `.symlinks/plugins/speech_to_text/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
-  - statusbar (from `.symlinks/plugins/statusbar/ios`)
 
 SPEC REPOS:
   trunk:
     - FMDB
+    - MTBBarcodeScanner
+    - SwiftProtobuf
+    - Try
 
 EXTERNAL SOURCES:
+  barcode_scan:
+    :path: ".symlinks/plugins/barcode_scan/ios"
   Flutter:
     :path: Flutter
+  flutter_statusbarcolor:
+    :path: ".symlinks/plugins/flutter_statusbarcolor/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   path_provider_linux:
@@ -43,19 +59,21 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/speech_to_text/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
-  statusbar:
-    :path: ".symlinks/plugins/statusbar/ios"
 
 SPEC CHECKSUMS:
+  barcode_scan: a5c27959edfafaa0c771905bad0b29d6d39e4479
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_statusbarcolor: 8afb1071ed8c58be929f1e32b36c629771fd2259
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   path_provider_linux: 4d630dc393e1f20364f3e3b4a2ff41d9674a84e4
   path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
-  speech_to_text: 41b068d5f61fe3abe7e2bb0296250cf996e45417
+  speech_to_text: b43a7d99aef037bd758ed8e45d79bbac035d2dfe
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
-  statusbar: 7d4f3b27d5e9317b17bc48cbf6046f892bf9ebeb
+  SwiftProtobuf: bec1ae7d686ff73dd09d79866154f4970b891410
+  Try: 5ef669ae832617b3cee58cb2c6f99fb767a4ff96
 
 PODFILE CHECKSUM: f45d293502bdcca725aca7bc62af43ad173e1292
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

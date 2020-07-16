@@ -8,6 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+const String PING_DOMAIN = 'https://google.com';
 typedef ExceptionOr = local.Result Function();
 
 extension LoadingExt<T> on Future<local.Result<T>> {
@@ -70,15 +71,20 @@ extension DioExt<T> on Future<Response> {
       final result = response.data;
 
       // if result or parser not valid throw [TypeError]
-      if (_isNoParserButResultNotString(parser, result) ||
-          _isHasParserButResultNotJson(parser, result)) {
-        throw TypeError();
-      }
+      // or called [onStringResponse] if result is string
+      final parserErrorResult = _validateParser(
+        parser,
+        result,
+        onParserError: () => throw TypeError(), // will catch later
+        onStringResponse: () => local.Result<T>.success(
+          result as T,
+          StringResponse(result),
+        ),
+      );
 
+      // parser not valid or result is string
       // passed this point, result can only be string or json
-      if (result is String && T == String) {
-        return local.Result<T>.success(result as T, StringResponse(result));
-      }
+      if (parserErrorResult != null) return parserErrorResult;
 
       final data = _parseData(result, parser, baseParser);
       return local.Result<T>.success(data, JsonResponse(result));
@@ -103,7 +109,7 @@ extension DioExt<T> on Future<Response> {
 
   Future<local.Result<T>> _handleErrorNetwork(
     DioError error,
-    DataParser<T> erroParser, [
+    DataParser erroParser, [
     DataParser baseParser,
     ExceptionOr errorOr,
   ]) async {
@@ -115,21 +121,25 @@ extension DioExt<T> on Future<Response> {
       final result = error.response.data;
 
       // if result or parser not valid throw [TypeError]
-      if (_isNoParserButResultNotString(erroParser, result) ||
-          _isHasParserButResultNotJson(erroParser, result)) {
-        return local.Result<T>.error(
+      // or called [onStringResponse] if result is string
+      final parserErrorResult = _validateParser(
+        erroParser,
+        result,
+        onParserError: () => local.Result<T>.error(
           MessageFailure.parseFail.code(error.response.statusCode),
-        );
-      }
+        ),
+        onStringResponse: () {
+          final errorMessage = result;
+          return local.Result<T>.error(
+            MessageFailure(errorMessage, error.response.statusCode),
+            StringResponse(errorMessage),
+          );
+        },
+      );
 
+      // parser not valid or error data is string
       // passed this point, result can only be string or json
-      if (result is String && T == String) {
-        final errorMessage = result;
-        return local.Result<T>.error(
-          MessageFailure(errorMessage, error.response.statusCode),
-          StringResponse(errorMessage),
-        );
-      }
+      if (parserErrorResult != null) return parserErrorResult;
 
       final data = _parseData(result, erroParser, baseParser);
       return local.Result<T>.error(local.Failure(data), JsonResponse(result));
@@ -152,7 +162,8 @@ extension DioExt<T> on Future<Response> {
     );
 
     try {
-      final google = await Dio(baseOptions).get('https://google.com');
+      final dioFactory = Get.find<DioFactory>(tag: PING_DOMAIN);
+      final google = await dioFactory(baseOptions).get(PING_DOMAIN);
       if (google.statusCode == 200) {
         return local.Result<T>.error(MessageFailure.serverFail);
       }
@@ -177,17 +188,33 @@ extension DioExt<T> on Future<Response> {
     }
   }
 
-  bool _isNoParserButResultNotString(
-    DataParser<T> parser,
-    dynamic result,
-  ) {
+  /// if parser is valid will return null
+  /// else will return [onParserError] or [onStringResponse]
+  /// [onStringResponse] is called if result is actually a string
+  local.Result<T> _validateParser(
+    DataParser parser,
+    dynamic result, {
+    @required local.Result<T> Function() onParserError,
+    @required local.Result<T> Function() onStringResponse,
+  }) {
+    if (_isNoParserButResultNotString(parser, result) ||
+        _isHasParserButResultNotJson(parser, result)) {
+      return onParserError();
+    }
+
+    if (result is String && T == String) {
+      return onStringResponse();
+    }
+
+    // parse is valid
+    return null;
+  }
+
+  bool _isNoParserButResultNotString(DataParser parser, dynamic result) {
     return parser == null && (T != String || result is! String);
   }
 
-  bool _isHasParserButResultNotJson(
-    DataParser<T> parser,
-    dynamic result,
-  ) {
+  bool _isHasParserButResultNotJson(DataParser parser, dynamic result) {
     return parser != null && result is! Map;
   }
 }
