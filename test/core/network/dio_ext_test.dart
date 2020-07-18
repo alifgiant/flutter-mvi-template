@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:aset_ku/core/model/Example.dart';
 import 'package:aset_ku/core/network/network.dart';
 import 'package:aset_ku/core/repository/result.dart';
 import 'package:aset_ku/core/utils/service/test_framework_service_locator.dart';
@@ -9,43 +12,97 @@ import 'package:mockito/mockito.dart';
 
 void main() {
   TestFrameworkServiceLocator().setupFrameworkLocator(Get);
-  Dio mockDio = Get.find<DioFactory>().call(BaseOptions());
-  Dio mockGglDio = Get.find<DioFactory>(tag: PING_DOMAIN).call(BaseOptions());
+  Dio mockGglDio;
 
-  tearDown(() async {
+  setUp(() async {
     Api.resetApi();
-    reset(mockDio);
-    reset(mockGglDio);
+    mockGglDio = Get.find<DioFactory>(tag: PING_DOMAIN).call(BaseOptions());
   });
 
-  group('withParser is correct', () {
-    test('MessageFailure.parseFail retrieve when parsing failed', () async {
+  group('withParser is correct when exception occured:', () {
+    // verify(Api.dio.get(argThat(contains(path))));
+    test('No parser given return MessageFailure.parseFail', () async {
       // when
       final path = mockString();
-      when(mockDio.get(path)).thenAnswer((_) => throw Error());
-      when(mockGglDio.get(path)).thenAnswer((_) => throw TypeError());
+      when(Api.v1.get(path)).thenAnswer((_) async => throw TypeError());
+
+      // execute
+      final result = await Api.v1.get(path).withParser<Example>((json) => null);
+
+      // then
+      assert(result.failure == MessageFailure.parseFail);
+    });
+
+    test('SocketException return MessageFailure.connectionFail', () async {
+      // when
+      final error = DioError(error: SocketException(mockString()));
+      final path = mockString();
+      when(Api.v1.get(path)).thenAnswer((_) async => throw error);
 
       // execute
       final result = await Api.v1.get(path).withParser((json) => null);
 
       // then
-      assert(MessageFailure.connectionFail == result.failure);
+      assert(result.failure == MessageFailure.connectionFail);
     });
 
-    test('errorOr is called when exception eccured', () async {
+    test('DioErrorType.CANCEL return MessageFailure.canceled', () async {
+      // when
+      final error = DioError(type: DioErrorType.CANCEL);
+      final path = mockString();
+      when(Api.v1.get(path)).thenAnswer((_) async => throw error);
+
+      // execute
+      final result = await Api.v1.get(path).withParser((json) => null);
+
+      // then
+      assert(result.failure == MessageFailure.canceled);
+    });
+
+    test('Type.RESPONSE return parse fail when no error parser', () async {
+      // when
+      final errorCode = mockInteger();
+      final path = mockString();
+      final error = DioError(
+        type: DioErrorType.RESPONSE,
+        response: Response(statusCode: errorCode),
+      );
+      when(Api.v1.get(path)).thenAnswer((_) async => throw error);
+
+      // execute
+      final result = await Api.v1.get(path).withParser<Example>((json) => null);
+
+      // then
+      assert(result.failure is Failure);
+      assert((result.failure as NetworkFailure).errorCode == errorCode);
+    });
+
+    test('other exception return connectionFail when ping failed', () async {
+      // when
+      final path = mockString();
+      when(Api.v1.get(path)).thenAnswer((_) async => throw Error());
+      when(mockGglDio.get(path)).thenAnswer((_) async => throw Error());
+
+      // execute
+      final result = await Api.v1.get(path).withParser((json) => null);
+
+      // then
+      assert(result.failure == MessageFailure.connectionFail);
+    });
+
+    test('other exception return errorOr when given', () async {
       // when
       final path = mockString();
       final errorMsg = mockString();
-      final errorResult = Result.error(Failure(errorMsg));
-      when(mockDio.get(path)).thenAnswer((_) => throw TypeError());
+      final errorResult = Result<Example>.error(Failure(errorMsg));
+      when(Api.v1.get(path)).thenAnswer((_) async => throw TypeError());
 
       // execute
       final result = await Api.v1
           .get(path)
-          .withParser((json) => null, errorOr: () => errorResult);
+          .withParser<Example>((json) => null, errorOr: () => errorResult);
 
       // then
-      // verify(mockDio.get(argThat(contains(path))));
       assert(errorResult == result);
       assert(errorMsg == result.failure.data);
     });

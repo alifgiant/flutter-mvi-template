@@ -3,17 +3,17 @@
 /// [failure],  where any failure is descripted
 /// [rawResponse], any raw data, could be json or string
 class Result<T> {
-  final Response rawResponse;
+  final RawResponse rawResponse;
   final Failure failure;
   final T data;
 
   Result._(this.data, this.rawResponse, this.failure);
 
-  factory Result.success(T data, [Response rawResponse]) {
+  factory Result.success(T data, [RawResponse rawResponse]) {
     return Result._(data, rawResponse, null);
   }
 
-  factory Result.error(Failure failure, [Response rawResponse]) {
+  factory Result.error(Failure failure, [RawResponse rawResponse]) {
     return Result._(null, rawResponse, failure);
   }
 
@@ -26,10 +26,10 @@ class Result<T> {
 
 /// only allow to retrieve 2 type
 /// [JsonResponse] or [StringResponse]
-abstract class Response<T> {
+abstract class RawResponse<T> {
   final T response;
 
-  const Response(this.response);
+  const RawResponse(this.response);
 }
 
 // consider using

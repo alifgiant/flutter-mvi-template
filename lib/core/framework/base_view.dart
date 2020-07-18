@@ -8,8 +8,13 @@ abstract class BaseView<V extends BaseView<V, A, S>,
 
   @override
   Widget build(BuildContext context) {
+    A action = initAction();
     return GetBuilder<A>(
-      init: initAction(),
+      init: action,
+      dispose: (State state) => action.dispose(),
+      didChangeDependencies: (State state) => action.didChangeDependencies(
+        state.context,
+      ),
       builder: (A action) => WillPopScope(
         child: action.isBusy
             ? loadingViewBuilder(context)

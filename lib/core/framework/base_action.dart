@@ -51,6 +51,14 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
     render();
   }
 
+  void dispose() {
+    // there sould be nothing here, only helper for mixin
+  }
+
+  void didChangeDependencies(BuildContext context) {
+    // there sould be nothing here, only helper for mixin
+  }
+
   void showSnackBar({
     @required String message,
     String title,

@@ -39,7 +39,7 @@ extension LoadingExt<T> on Future<local.Result<T>> {
   }
 }
 
-extension DioExt<T> on Future<Response> {
+extension DioExt on Future<Response> {
   /// define [parser] to parse json like following
   /// [{..},{..}] or {....}
   ///
@@ -59,7 +59,7 @@ extension DioExt<T> on Future<Response> {
   ///   'status': 200
   ///   'lists' : [{..},{..}]    // baseParser have to return 'lists'
   /// }
-  Future<local.Result<T>> withParser(
+  Future<local.Result<T>> withParser<T>(
     DataParser<T> parser, {
     DataParser baseParser,
     DataParser errorParser,
@@ -75,7 +75,7 @@ extension DioExt<T> on Future<Response> {
       final parserErrorResult = _validateParser(
         parser,
         result,
-        onParserError: () => throw TypeError(), // will catch later
+        onParserError: () => throw TypeError(), // will be catched later
         onStringResponse: () => local.Result<T>.success(
           result as T,
           StringResponse(result),
@@ -107,7 +107,7 @@ extension DioExt<T> on Future<Response> {
     }
   }
 
-  Future<local.Result<T>> _handleErrorNetwork(
+  Future<local.Result<T>> _handleErrorNetwork<T>(
     DioError error,
     DataParser erroParser, [
     DataParser baseParser,
@@ -152,7 +152,7 @@ extension DioExt<T> on Future<Response> {
   /// if get to google also failed means internet is not available
   /// 30s read and connect timeout to ping Google.com
   /// using custom dio
-  Future<local.Result<T>> _pingGoogle({
+  Future<local.Result<T>> _pingGoogle<T>({
     int timeout = Api.DEFAULT_TIMEOUT,
     ExceptionOr errorOr,
   }) async {
@@ -167,7 +167,9 @@ extension DioExt<T> on Future<Response> {
       if (google.statusCode == 200) {
         return local.Result<T>.error(MessageFailure.serverFail);
       }
-    } catch (error) {}
+    } catch (error) {
+      // ignore any kind of error from google ping
+    }
 
     if (errorOr != null) return errorOr();
 
@@ -175,7 +177,7 @@ extension DioExt<T> on Future<Response> {
     return local.Result<T>.error(MessageFailure.connectionFail);
   }
 
-  T _parseData(
+  T _parseData<T>(
     Map<dynamic, dynamic> result,
     DataParser<T> parser, [
     DataParser baseParser,
@@ -191,7 +193,7 @@ extension DioExt<T> on Future<Response> {
   /// if parser is valid will return null
   /// else will return [onParserError] or [onStringResponse]
   /// [onStringResponse] is called if result is actually a string
-  local.Result<T> _validateParser(
+  local.Result<T> _validateParser<T>(
     DataParser parser,
     dynamic result, {
     @required local.Result<T> Function() onParserError,
@@ -210,7 +212,7 @@ extension DioExt<T> on Future<Response> {
     return null;
   }
 
-  bool _isNoParserButResultNotString(DataParser parser, dynamic result) {
+  bool _isNoParserButResultNotString<T>(DataParser parser, dynamic result) {
     return parser == null && (T != String || result is! String);
   }
 

@@ -1,13 +1,13 @@
 import 'package:aset_ku/core/repository/result.dart';
 
-class JsonResponse extends Response<Map<String, dynamic>> {
+class JsonResponse extends RawResponse<Map<String, dynamic>> {
   @override
   final Map<String, dynamic> response;
 
   JsonResponse(this.response) : super(response);
 }
 
-class StringResponse extends Response<String> {
+class StringResponse extends RawResponse<String> {
   @override
   final String response;
 
