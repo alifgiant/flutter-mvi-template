@@ -6,8 +6,11 @@ part 'NetworkToken.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class NetworkToken extends Equatable {
+  @JsonKey(name: 'access_token', defaultValue: '')
   final String accessToken;
+  @JsonKey(name: 'token_type')
   final String tokenType;
+  @JsonKey(name: 'expires_at')
   final String expireAt;
 
   const NetworkToken(
@@ -29,19 +32,7 @@ class NetworkToken extends Equatable {
     return _singleton;
   }
 
-  static NetworkToken dataParser(Map<String, dynamic> json) {
-    return NetworkToken(
-      json[KEY_ACCESS_TOKEN],
-      tokenType: json[KEY_TOKEN_TYPE],
-      expireAt: json[KEY_EXPIRES_AT],
-    );
-  }
-
   static const NetworkToken defToken = NetworkToken('');
-
-  static const KEY_ACCESS_TOKEN = 'access_token';
-  static const KEY_TOKEN_TYPE = 'token_type';
-  static const KEY_EXPIRES_AT = 'expires_at';
 
   @override
   List<Object> get props => [accessToken, tokenType, expireAt];

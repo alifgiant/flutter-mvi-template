@@ -24,8 +24,3 @@ class MessageFailure extends NetworkFailure<String> {
   );
   static const MessageFailure canceled = MessageFailure('Request di cancel');
 }
-
-class MessagesFailure extends NetworkFailure<List<String>> {
-  const MessagesFailure(List<String> data, [int errorCode = 0])
-      : super(data, errorCode);
-}

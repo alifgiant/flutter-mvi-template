@@ -1,51 +1,58 @@
 import 'dart:convert';
 
 import 'package:aset_ku/core/network/NetworkToken.dart';
+import 'package:aset_ku/core/storage/get_storage_wrapper.dart';
 import 'package:aset_ku/core/storage/read_write_value.dart';
 import 'package:aset_ku/core/utils/serialize_utils.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:get/get.dart';
 
+/// Utils for app config
+final GetStorageWrapper configBox = Get.find<GetStorageWrapper>();
 const AppConfigKey = 'AsetKuLocalStorage';
 
-/// Supports Android, iOS, Web, Mac, Linux, and fuchsia and Windows**.
+/// Supports Android, iOS, Web, Mac, Linux, and fuchsia and Windows.
 /// Can store String, int, double, Map and List
 class AppConfig {
-  const AppConfig();
-
   // TODO: set to false
-  static final isDummyOn = RawValue<bool>('isDummyOn', true);
+  static final isDummyOn = true.value('isDummyOn');
 
   static final token = FieldValue<NetworkToken>(
     'token',
     NetworkToken.defToken,
     (json) => NetworkToken.fromJson(json),
-    (data) => NetworkToken.buildJson(data),
+    (data) => data.toJson(),
   );
 
-  // creation
-  Future setup() => GetStorage.init(AppConfigKey);
-
-  // clearing
-  static Future clear() => configBox().erase();
+  // creation & clearing
+  static Future<bool> setup() => configBox.create(AppConfigKey);
+  static Future clear() => configBox.retrieve(AppConfigKey).erase();
 }
-
-/// utils for app config
-final GetStorage Function() configBox = () => GetStorage(AppConfigKey);
 
 /// can only use primitive type (int, String, bool, char, double)
-class RawValue<T> extends ReadWriteValue<T> {
-  RawValue(String key, T defaultValue) : super(key, defaultValue, configBox);
+class PrimitiveValue<T> extends ReadWriteValue<T> {
+  PrimitiveValue(
+    String key,
+    T defaultValue,
+  ) : super(key, defaultValue, () => configBox.retrieve(AppConfigKey));
 }
 
-class FieldValue<T> {
-  final RawValue<String> _rwVal;
+extension PrimitiveData<T> on T {
+  ReadWriteValue<T> value(String valueKey, {T defVal}) {
+    return PrimitiveValue(valueKey, defVal ?? this);
+  }
+}
+
+class FieldValue<T> extends GetSet<T> {
+  final PrimitiveValue<String> _rwVal;
 
   final DataParser<T> parser;
   final DataEncoder<T> encoder;
   FieldValue(String key, T defaultValue, this.parser, this.encoder)
-      : this._rwVal = RawValue(key, jsonEncode(encoder(defaultValue)));
+      : this._rwVal = PrimitiveValue(key, jsonEncode(encoder(defaultValue)));
 
+  @override
   T get val => parser(jsonDecode(_rwVal.val));
 
+  @override
   set val(T newVal) => _rwVal.val = jsonEncode(encoder(newVal));
 }

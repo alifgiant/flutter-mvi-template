@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 const String PROTOCOL_HTTP = 'http';
 const String PROTOCOL_HTTPS = 'https';
 
@@ -14,7 +16,8 @@ class UriData {
 class NetworkEnv {
   final UriData uriData;
 
-  const NetworkEnv._(this.uriData);
+  @visibleForTesting
+  const NetworkEnv.internal(this.uriData);
 
   String get root {
     String url = '${uriData.protocol}://${uriData.domain}';
@@ -31,7 +34,7 @@ class NetworkEnv {
     return _singleton;
   }
 
-  static const NetworkEnv PRODUCTION = const NetworkEnv._(UriData(
+  static const NetworkEnv PRODUCTION = const NetworkEnv.internal(UriData(
     "production",
     PROTOCOL_HTTPS,
     "asetku.luxinfity.com",
@@ -39,7 +42,7 @@ class NetworkEnv {
     "/api",
   ));
 
-  static const NetworkEnv STAGING = const NetworkEnv._(UriData(
+  static const NetworkEnv STAGING = const NetworkEnv.internal(UriData(
     "staging",
     PROTOCOL_HTTPS,
     "asetdev.luxinfity.com",
@@ -47,7 +50,7 @@ class NetworkEnv {
     "/api",
   ));
 
-  static const NetworkEnv MOCK = const NetworkEnv._(UriData(
+  static const NetworkEnv MOCK = const NetworkEnv.internal(UriData(
     "mock",
     PROTOCOL_HTTPS,
     "7185f494-c7e3-4565-ba39-5c3529b66469.mock.pstmn.io",

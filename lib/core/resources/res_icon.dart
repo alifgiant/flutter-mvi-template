@@ -4,9 +4,10 @@ import 'package:line_awesome_icons/line_awesome_icons.dart';
 typedef IconFactory = IconData Function();
 
 class ResIcon {
-  static Map<String, IconFactory> _icons = {
+  @visibleForTesting
+  static Map<String, IconFactory> icons = {
     // common
-    'default': () => LineAwesomeIcons.times,
+    'defaults': () => LineAwesomeIcons.times,
     'home': () => LineAwesomeIcons.home,
     'setting': () => LineAwesomeIcons.tools,
     'add': () => LineAwesomeIcons.plus,
@@ -42,11 +43,11 @@ class ResIcon {
 
   static IconData get(String name) {
     if (name == null) return null;
-    if (name.isNotEmpty && _icons.containsKey(name)) return _icons[name].call();
-    return _icons['defaults'].call();
+    if (name.isNotEmpty && icons.containsKey(name)) return icons[name].call();
+    return icons['defaults'].call();
   }
 
-  static Widget ico(
+  static Icon ico(
     String name, {
     double size,
     Color color,

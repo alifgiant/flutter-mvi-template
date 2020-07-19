@@ -15,6 +15,7 @@ extension LoadingExt<T> on Future<local.Result<T>> {
   Future<local.Result<T>> withLoading({
     String caption = 'Loading..',
     bool barrierDismissible = false,
+    GetImpl getX,
   }) async {
     final content = Padding(
       padding: const EdgeInsets.all(12.0),
@@ -31,9 +32,12 @@ extension LoadingExt<T> on Future<local.Result<T>> {
       ),
     );
 
-    Get.dialog(Dialog(child: content), barrierDismissible: barrierDismissible);
+    (getX ?? Get).dialog(
+      Dialog(child: content),
+      barrierDismissible: barrierDismissible,
+    );
     final result = await this;
-    Get.back();
+    (getX ?? Get).back();
 
     return result;
   }
@@ -72,7 +76,7 @@ extension DioExt on Future<Response> {
 
       // if result or parser not valid throw [TypeError]
       // or called [onStringResponse] if result is string
-      final parserErrorResult = _validateParser(
+      final parserErrorResult = _validateParser<T>(
         parser,
         result,
         onParserError: () => throw TypeError(), // will be catched later
@@ -89,8 +93,6 @@ extension DioExt on Future<Response> {
       final data = _parseData(result, parser, baseParser);
       return local.Result<T>.success(data, JsonResponse(result));
     } catch (error) {
-      if (errorOr != null) return errorOr();
-
       if (error is TypeError) {
         return local.Result<T>.error(MessageFailure.parseFail);
       } else if (error is DioError) {
@@ -122,7 +124,7 @@ extension DioExt on Future<Response> {
 
       // if result or parser not valid throw [TypeError]
       // or called [onStringResponse] if result is string
-      final parserErrorResult = _validateParser(
+      final parserErrorResult = _validateParser<T>(
         erroParser,
         result,
         onParserError: () => local.Result<T>.error(
@@ -199,7 +201,7 @@ extension DioExt on Future<Response> {
     @required local.Result<T> Function() onParserError,
     @required local.Result<T> Function() onStringResponse,
   }) {
-    if (_isNoParserButResultNotString(parser, result) ||
+    if (_isNoParserButResultNotString<T>(parser, result) ||
         _isHasParserButResultNotJson(parser, result)) {
       return onParserError();
     }
