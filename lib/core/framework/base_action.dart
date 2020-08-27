@@ -20,7 +20,7 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
   Future<S> initState();
 
   void closeScreen<T>([T result]) {
-    Get.back(result: result);
+    Get.key.currentState.maybePop(result);
   }
 
   /// reloadScreen will only be called once after 300ms has passed
@@ -34,7 +34,6 @@ abstract class BaseAction<V extends BaseView<V, A, S>,
     if (state != null) renderDbn.runLastCall(() => update());
   }
 
-  // TODO: research more, not works
   Future<bool> onWillPop() async => true;
 
   @override
